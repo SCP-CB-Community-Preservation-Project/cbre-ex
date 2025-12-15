@@ -142,7 +142,7 @@
             this.GitHubLink.Size = new System.Drawing.Size(370, 25);
             this.GitHubLink.TabIndex = 1;
             this.GitHubLink.TabStop = true;
-            this.GitHubLink.Text = "https://github.com/AnalogFeelings/cbre-ex";
+            this.GitHubLink.Text = "https://github.com/SCP-CB-Community-Preservation-Project/cbre-ex";
             this.GitHubLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
@@ -169,7 +169,7 @@
             this.LicenseLink.Size = new System.Drawing.Size(370, 25);
             this.LicenseLink.TabIndex = 3;
             this.LicenseLink.TabStop = true;
-            this.LicenseLink.Text = "https://github.com/AnalogFeelings/cbre-ex/blob/main/LICENSE";
+            this.LicenseLink.Text = "https://github.com/SCP-CB-Community-Preservation-Project/cbre-ex/blob/main/LICENSE";
             this.LicenseLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ExtraLicenseLink
@@ -183,7 +183,7 @@
             this.ExtraLicenseLink.Size = new System.Drawing.Size(370, 27);
             this.ExtraLicenseLink.TabIndex = 4;
             this.ExtraLicenseLink.TabStop = true;
-            this.ExtraLicenseLink.Text = "https://github.com/AnalogFeelings/cbre-ex#licensing";
+            this.ExtraLicenseLink.Text = "https://github.com/SCP-CB-Community-Preservation-Project/cbre-ex?tab=readme-ov-file#balance_scale-license-information";
             this.ExtraLicenseLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4

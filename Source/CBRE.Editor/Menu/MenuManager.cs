@@ -150,7 +150,6 @@ namespace CBRE.Editor.Menu
             Add("Tools", new MenuSplitter { IsVisible = mapOpen });
             Add("Tools", new SimpleMenuBuilder("Options...", EditorMediator.OpenSettings) { Image = Resources.Menu_Options, ShowInToolStrip = true });
 
-            Add("Help", new SimpleMenuBuilder("Check For Updates...", EditorMediator.CheckForUpdates) { Image = Resources.Menu_Update });
             Add("Help", new SimpleMenuBuilder("Report A Bug...", EditorMediator.OpenWebsite, Editor.GITHUB_REPORT_BUG_URL) { Image = Resources.Menu_GitHub });
             Add("Help", new MenuSplitter { IsVisible = mapOpen });
             Add("Help", new SimpleMenuBuilder("About CBRE-EX", EditorMediator.About) { Image = Resources.Menu_ShowInformation });

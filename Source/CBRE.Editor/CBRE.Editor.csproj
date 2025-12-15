@@ -507,13 +507,6 @@
     <Compile Include="UI\TransformDialog.Designer.cs">
       <DependentUpon>TransformDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UpdaterClasses.cs" />
-    <Compile Include="UI\UpdaterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\UpdaterForm.Designer.cs">
-      <DependentUpon>UpdaterForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\ViewportContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -702,9 +695,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TransformDialog.resx">
       <DependentUpon>TransformDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\UpdaterForm.resx">
-      <DependentUpon>UpdaterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Layout\ViewportWindow.resx">
       <DependentUpon>ViewportWindow.cs</DependentUpon>
@@ -923,10 +913,6 @@
     <ProjectReference Include="..\CBRE.UI\CBRE.UI.csproj">
       <Project>{abbee97f-b5a6-4ed6-8d8f-6d4091fb9d44}</Project>
       <Name>CBRE.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CBRE.Updater\CBRE.Updater.csproj">
-      <Project>{5d01022f-a383-4e5b-80ac-1ed2f8a1b9c7}</Project>
-      <Name>CBRE.Updater</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

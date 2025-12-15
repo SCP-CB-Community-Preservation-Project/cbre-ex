@@ -508,7 +508,6 @@ namespace CBRE.Editor.Settings
         private void SettingsFormLoad(object sender, EventArgs e)
         {
             AddHeading("General Settings");
-            AddSetting(() => CBRE.Settings.General.CheckUpdatesOnStartup, "Check for updates on startup");
             AddSetting(() => CBRE.Settings.General.EnableDiscordPresence, "Enable Discord rich presence");
 
             AddHeading("Object Creation");

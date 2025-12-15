@@ -44,10 +44,7 @@ namespace CBRE.Editor
 		
 		public static Editor Instance { get; private set; }
 
-		private const string API_RELEASES_URL = "https://api.github.com/repos/AnalogFeelings/cbre-ex/releases/latest";
-		private const string GIT_LATEST_RELEASE_URL = "https://github.com/AnalogFeelings/cbre-ex/releases/latest";
-
-		public const string GITHUB_REPORT_BUG_URL = "https://github.com/AnalogFeelings/cbre-ex/issues/new?assignees=AnalogFeelings&labels=bug&template=bug_report.md&title=";
+		public const string GITHUB_REPORT_BUG_URL = "https://github.com/SCP-CB-Community-Preservation-Project/cbre-ex/issues/new?assignees=Saalvage&labels=bug&template=bug_report.md&title=";
 
 		public bool CaptureAltPresses { get; set; }
 		public bool ShowEntityErrorForm = true;
@@ -193,23 +190,6 @@ namespace CBRE.Editor
 
 			ViewportManager.RefreshClearColour(DocumentTabs.TabPages.Count == 0);
 
-			// Update the updater.
-			if(Directory.Exists("Temp"))
-			{
-				string[] files = Directory.GetFiles("Temp");
-
-				if(files.Length > 0)
-				{
-					foreach(string file in files)
-						File.Copy(file, "./" + System.IO.Path.GetFileName(file), true);
-
-					Directory.Delete("Temp", true);
-				}
-			}
-
-			if (CBRE.Settings.General.CheckUpdatesOnStartup) 
-				CheckForUpdates(true);
-			
 			ToggleDiscord(CBRE.Settings.General.EnableDiscordPresence);
 		}
 
@@ -225,77 +205,6 @@ namespace CBRE.Editor
 				_DiscordManager = null;
 			}
 		}
-
-		#region Updates
-		private Version GetCurrentVersion()
-		{
-			Version info = typeof(Editor).Assembly.GetName().Version;
-			return info;
-		}
-
-		private void CheckForUpdates(bool notFromMenu)
-		{
-			using (HttpClient Client = new HttpClient())
-			{
-				try
-				{
-					Version ParsedNewVersion;
-					Version CurrentVersion = GetCurrentVersion();
-
-					//Github wants me to set a user agent, sure!
-					Client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-					Client.DefaultRequestHeaders.Add("User-Agent", "AnalogFeelings/cbre-ex");
-
-					JsonSerializerSettings DeserializeSettings = new JsonSerializerSettings
-					{
-						MissingMemberHandling = MissingMemberHandling.Ignore
-					};
-
-					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-
-					string ServerResponse = Task.Run(() => Client.GetStringAsync(API_RELEASES_URL)).Result;
-
-					UpdaterResponse Response = JsonConvert.DeserializeObject<UpdaterResponse>(ServerResponse, DeserializeSettings);
-
-					//Version is invalid? Die
-					if (!Version.TryParse(Response.VersionTag, out ParsedNewVersion)) return;
-
-					ReleaseAsset PackageAsset = Response.Assets.FirstOrDefault(x => x.Filename.EndsWith(".zip"));
-					ReleaseAsset ChecksumAsset = Response.Assets.FirstOrDefault(x => x.Filename.EndsWith(".sha256"));
-
-					if (ParsedNewVersion > CurrentVersion)
-					{
-						//Missing required files? The update must have changed the structure!
-						if (PackageAsset == default(ReleaseAsset) || ChecksumAsset == default(ReleaseAsset))
-						{
-							DialogResult Result = MessageBox.Show("There is a new update available, but the required files are missing. This may mean that you need to update CBRE-EX manually.\n\n" +
-																  "Do you want to open the latest GitHub release?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-							if (Result == DialogResult.Yes) Process.Start(GIT_LATEST_RELEASE_URL);
-
-							return;
-						}
-
-						UpdaterForm Form = new UpdaterForm(ParsedNewVersion, Response.Description, PackageAsset, ChecksumAsset);
-						Form.ShowDialog();
-					}
-					else
-					{
-						//Kinda ugly maybe?
-						if (!notFromMenu)
-						{
-							MessageBox.Show("There are no updates available.", "Information", MessageBoxButtons.OK,
-								MessageBoxIcon.Information);
-						}
-					}
-				}
-				catch (Exception)
-				{
-					return; //Do nothing.
-				}
-			}
-		}
-		#endregion
 
 		private bool PromptForChanges(Document doc)
 		{
@@ -414,7 +323,6 @@ namespace CBRE.Editor
 			Mediator.Subscribe(EditorMediator.ToolSelected, this);
 
 			Mediator.Subscribe(EditorMediator.OpenWebsite, this);
-			Mediator.Subscribe(EditorMediator.CheckForUpdates, this);
 			Mediator.Subscribe(EditorMediator.About, this);
 		}
 
