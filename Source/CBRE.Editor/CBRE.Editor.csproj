@@ -915,6 +915,22 @@
       <Name>CBRE.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <Choose>
+    <When Condition="'$(Platform)' == 'x86'">
+      <ItemGroup>
+        <PackageReference Include="Facepunch.Steamworks.Dll" Version="1.48.0"/>
+        <PackageReference Include="Facepunch.Steamworks.win32" Version="2.3.3"/>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="'$(Platform)' == 'x64'">
+      <ItemGroup>
+        <PackageReference Include="Facepunch.Steamworks" Version="2.3.3"/>
+        <PackageReference Include="Facepunch.Steamworks.Library" Version="2.3.3"/>
+      </ItemGroup>
+  </When>
+  </Choose>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.1.4.20" />
     <PackageReference Include="LargeAddressAware" Version="1.0.6" />

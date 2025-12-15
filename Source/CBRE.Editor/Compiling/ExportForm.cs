@@ -3,7 +3,6 @@ using CBRE.Settings;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,6 +10,9 @@ using System.Threading;
 using System.Windows.Forms;
 using CBRE.UI.Native;
 using Microsoft.WindowsAPICodePack.Taskbar;
+using Steamworks;
+using Steamworks.Data;
+using Color = System.Drawing.Color;
 
 namespace CBRE.Editor.Compiling
 {
@@ -264,6 +266,14 @@ namespace CBRE.Editor.Compiling
                     else if (extension.Equals(".rmesh", StringComparison.OrdinalIgnoreCase))
                     {
                         RMeshExport.SaveToFile(SaveFileName, Document, this);
+                        if (SteamClient.IsValid)
+                        {
+                            Achievement achExported = SteamUserStats.Achievements.FirstOrDefault(x => x.Identifier == "exported_rmesh");
+                            if (achExported.Identifier != null && !achExported.State)
+                            {
+                                achExported.Trigger();
+                            }
+                        }
                     }
                     else if (_GenericExtensions.Contains(extension.ToLower()))
                     {

@@ -33,6 +33,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Steamworks;
 using LayoutSettings = CBRE.Editor.UI.Layout.LayoutSettings;
 
 namespace CBRE.Editor
@@ -191,6 +192,16 @@ namespace CBRE.Editor
 			ViewportManager.RefreshClearColour(DocumentTabs.TabPages.Count == 0);
 
 			ToggleDiscord(CBRE.Settings.General.EnableDiscordPresence);
+
+			try
+			{
+				SteamClient.Init(4257960);
+			}
+			catch (Exception ex)
+			{
+				Logging.Logger.ShowException(ex, "Failed to initialize Steam client: " + ex.Message);
+			}
+
 		}
 
 		public void ToggleDiscord(bool Enabled)
@@ -241,6 +252,7 @@ namespace CBRE.Editor
 			ViewportManager.SaveLayout();
 			SettingsManager.SaveSession(DocumentManager.Documents.Select(x => Tuple.Create(x.MapFile, x.Game)));
 			SettingsManager.Write();
+			SteamClient.Shutdown();
 		}
 
 		protected override void OnDragDrop(DragEventArgs drgevent)
