@@ -707,9 +707,6 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="Entities\Entity Guide.url">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -723,16 +720,10 @@
     <EmbeddedResource Include="Rendering\Shaders\MapObject3D.vert" />
     <EmbeddedResource Include="Rendering\Shaders\MapObject2D.vert" />
     <EmbeddedResource Include="Rendering\Shaders\MapObject2D.frag" />
-    <None Include="Sprites\lightbulb.png">
+    <None Include="Entities\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Sprites\speaker.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Entities\Item.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Sprites\item.png">
+    <None Include="Sprites\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Tools\CameraTool.cs" />
@@ -763,23 +754,11 @@
     <None Include="Resources\Menu_ExportRmesh.png" />
     <None Include="Resources\CBRE_Icon.png" />
     <None Include="Resources\CBRE.ico" />
-    <None Include="Sprites\waypoint.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\Menu_HideEntitySprites.png" />
     <None Include="Resources\Menu_HideMapOrigin.png" />
     <None Include="Resources\Options.ico" />
     <None Include="Resources\Lightmapper.ico" />
     <Content Include="Resources\Menu_GitHub.png" />
-    <None Include="Sprites\model.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="Sprites\screen.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Sprites\spotlight.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="ToolTextures\BLOCK_LIGHT.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
